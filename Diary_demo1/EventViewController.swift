@@ -10,7 +10,7 @@ import UIKit
 import RealmSwift
 
 let w2 = UIScreen.main.bounds.size.width
-let h = UIScreen.main.bounds.size.height
+let h2 = UIScreen.main.bounds.size.height
 
 let eventTextView = UITextView(frame: CGRect(x: (w2 - 300) / 2, y: 100, width: 300, height: 400))
 let dateLabel = UILabel(frame: CGRect(x: (w2 - 300) / 2, y: 70, width: 300, height: 20))
