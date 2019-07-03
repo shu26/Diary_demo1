@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  Diary_demo1
 //
-//  Created by 海法修平 on 2019/06/20.
-//  Copyright © 2019 海法修平. All rights reserved.
+//  Created by shu26 on 2019/06/20.
+//  Copyright © 2019 shu26. All rights reserved.
 //
 
 import UIKit
