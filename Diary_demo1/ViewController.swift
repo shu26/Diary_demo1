@@ -84,18 +84,8 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         // カレンダー上でも選択する
         let savedDate = UserDefaults.standard.object(forKey: "selectedDate") as? String
         if savedDate != nil {
-            //スケジュール取得
-            let realm = try! Realm()
-            var result = realm.objects(Event.self)
-            result = result.filter("date = '\(savedDate!)'")
-            print(result)
-            for ev in result {
-                if ev.date == savedDate! {
-                    contentLabel.text = ev.event
-                    print(ev.event)
-                    contentLabel.textColor = .black
-                }
-            }
+            let date = savedDate!
+            getSchedule(date: date)
         }
     }
     
@@ -132,7 +122,6 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         if self.judgeHoliday(date){
             return UIColor.red
         }
-        
         //土日の判定
         let weekday = self.getWeekIdx(date)
         if weekday == 1 {
@@ -141,7 +130,6 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         else if weekday == 7 {
             return UIColor.blue
         }
-        
         return nil
     }
     
@@ -183,13 +171,17 @@ class ViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource
         selectedDate.text = "\(m)/\(d)"
         toEditDate = da
         
+        getSchedule(date: da)
+    }
+    
+    func getSchedule(date: String) {
         //スケジュール取得
         let realm = try! Realm()
         var result = realm.objects(Event.self)
-        result = result.filter("date = '\(da)'")
+        result = result.filter("date = '\(date)'")
         print(result)
         for ev in result {
-            if ev.date == da {
+            if ev.date == date {
                 contentLabel.text = ev.event
                 print(ev.event)
                 contentLabel.textColor = .black
