@@ -37,7 +37,7 @@ class EventViewController: UIViewController {
         toolBar.barStyle = UIBarStyle.default
         // 画面幅に合わせてサイズを変更
         toolBar.sizeToFit()
-        // 閉じるボタンを右に配置するためのスペース?
+        // 閉じるボタンを右に配置するためのスペース
         let spacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
         // 閉じるボタン
         let commitButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(self.commitButtonTapped))
@@ -55,7 +55,14 @@ class EventViewController: UIViewController {
         //日付表示設定
         y_text.backgroundColor = .white
         y_text.textAlignment = .center
-        // 日にちを選択しないとエラーが出る
+        //FIXME: 日にちを選択しないとエラーが出る
+        // UIDatePickerであらかじめ日付を取得しとくのがいいかも
+        let formatter = DateFormatter()
+        formatter.dateFormat = DateFormatter.dateFormat(fromTemplate: "yyyy/MM/dd", options: 0, locale: Locale(identifier: "ja_JP"))
+        
+        print("-------------------")
+        print(y_text)
+        print(y_text.text)
         view.addSubview(y_text)
         
         //「カレンダーに追加!」ボタン
